@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bumble-Like Website Mockup</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding-top: 20px;
+        }
+        .profile-card {
+            width: 300px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .profile-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .buttons {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: none;
+        }
+        .like-btn {
+            background-color: #ff5a5f;
+            color: white;
+        }
+        .pass-btn {
+            background-color: #ccc;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Match Profiles</h1>
+<div id="profileContainer"></div>
+
+<script>
+    // Mock data to simulate fetching user profiles
+    const mockProfiles = [
+        { name: 'Sai Pallavi', age: 25, bio: 'Loves hiking and outdoor adventures.', image: 'https://i.pinimg.com/736x/ba/dc/9d/badc9d597770b60e66eecc6afe3b1499.jpg' },
+        { name: 'Kajal Agarwal', age: 28, bio: 'Foodie and world traveler.', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCJhVZPHumFsSSq0PioveaXNlLX6J1Dyj3Lg&s' },
+        { name: 'Nithya Menon', age: 24, bio: 'Cat person and coffee lover.', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGSzr1UJxocymEPpEr2TXhGNp3yGBcjt6NqQ&s' },
+        { name: 'prasanna', age: 30, bio: 'Bookworm and amateur photographer.', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHTSXask4-guUj7xO7h_qnzZwkV4ou7MkJJA&s' },
+    ];
+
+    // Current profile index
+    let currentIndex = 0;
+
+    // Load profile into DOM
+    function loadProfile(profile) {
+        const profileContainer = document.getElementById('profileContainer');
+        profileContainer.innerHTML = `
+            <div class="profile-card">
+                <img src="${profile.image}" alt="Profile Picture">
+                <h2>${profile.name}, ${profile.age}</h2>
+                <p>${profile.bio}</p>
+                <div class="buttons">
+                    <button class="button pass-btn" onclick="passProfile()">Pass</button>
+                    <button class="button like-btn" onclick="likeProfile()">Like</button>
+                </div>
+            </div>
+        `;
+    }
+
+    // Load initial profile
+    loadProfile(mockProfiles[currentIndex]);
+
+    // Show next profile
+    function nextProfile() {
+        currentIndex = (currentIndex + 1) % mockProfiles.length;
+        loadProfile(mockProfiles[currentIndex]);
+    }
+
+    // "Pass" and "Like" actions
+    function passProfile() {
+        alert("You passed on " + mockProfiles[currentIndex].name);
+        nextProfile();
+    }
+
+    function likeProfile() {
+        alert("You liked " + mockProfiles[currentIndex].name);
+        nextProfile();
+    }
+</script>
+
+</body>
+</html>
